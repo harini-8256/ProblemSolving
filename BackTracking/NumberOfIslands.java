@@ -31,7 +31,8 @@ public class NumberOfIslands {
         return count;
     }
     public static void dfs(int i,int j){
-        if(i < 0|| i>=m || j<0 || j>=n||grid[i][j]!='1'||visited[i][j]){
+    
+        if(i < 0|| i>=m|| j<0 || j>=n||grid[i][j]!='1'||visited[i][j]){
             return;
         }
         visited[i][j] = true;
