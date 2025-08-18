@@ -1,94 +1,55 @@
 package Stack_Programs;
-
-class Node {
+class Node{
     int data;
     Node next;
-    Node(int data1,Node next1) {
+    Node(int data1,Node next1){
         this.data = data1;
         this.next = next1;
     }
     Node(int data1){
         this.data = data1;
-        this.next = null;
     }
 }
-
-public class StackUsingLinkedlist {
-    private Node head;  
-    private Node tail;  
-    private int size;
-
-    public StackUsingLinkedlist() {
-        this.head = null;
-        this.tail = null;
-        this.size = 0;
-    }
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public void push(int x) {
-        Node newNode = new Node(x);
-        if (isEmpty()) {
-            head = newNode;
-            tail = newNode;
-        } else {
-            tail.next = newNode;
-            tail = newNode;
-        }
-        size++;
-    }
-    public int pop() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty");
-            return -1; 
-        }
-        int poppedValue = tail.data;
-        if (head == tail) { 
-            head = null;
-            tail = null;
-        } 
-        else 
-        {
-            Node current = head;
-            while (current.next != tail) {
-                current = current.next;
-            }
-            current.next = null;
-            tail = current;
-        }
-        size--;
-        return poppedValue;
-    }
-    public int peek() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty");
-            return -1;
-        }
-        return tail.data;
-    }
-    public void display() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty");
+class StackWithLinkedlist{
+     Node top ;
+     int size=0;
+     void push(int x){
+        Node temp = new Node(x);
+        temp.next=top;
+        top = temp;
+        size = size+1;
+     }
+     void pop(){
+        if(top == null){
+            System.out.println("there are no elements to remove");
             return;
         }
-        Node current = head;
-        while (current != null) {
-            System.out.print(current.data + " -> ");
-            current = current.next;
-        }
-        System.out.println("NULL");
-    }
+        Node temp = top;
+        top = top.next;
+        size = size-1;
+        System.out.println("removed element"+" "+ temp.data);
 
+     }
+     int peek(){
+        if(top== null){
+            System.out.println("there are no elements");
+            return -1;
+        }
+        return top.data;
+     }
+    int size(){
+        return size;
+    }
+}
+public class StackUsingLinkedlist {
     public static void main(String[] args) {
-        StackUsingLinkedlist stack = new StackUsingLinkedlist();
-        
-        stack.push(10);
-        stack.push(20);
-        stack.push(30);
-        stack.display();  
-        System.out.println("Popped: " + stack.pop());  
-        stack.display();  
-        System.out.println("Top element: " + stack.peek());  
+        StackWithLinkedlist s = new StackWithLinkedlist();
+        s.push(10);
+        s.push(20);
+        s.push(30);
+        s.pop();
+        System.out.println("top element "+s.peek());
+        s.push(49);
+       System.out.println("size is "+s.size());
     }
 }
